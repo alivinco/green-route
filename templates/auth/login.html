@@ -1,0 +1,40 @@
+<!--<html>-->
+{{ template "header.html" .}}
+        <!--<head><title>Login</title></head>-->
+        <!--<body>-->
+        <!--&lt;!&ndash;<h1>Httpauth example</h1>&ndash;&gt;-->
+        <!--<h2>Entry Page</h2>-->
+        <!--<p><b>Messages: %v</b></p>-->
+        <!--<h3>Login</h3>-->
+        <!--<form action="/greenr/ui/login" method="post" id="login">-->
+            <!--<input type="text" name="username" placeholder="username"><br>-->
+            <!--<input type="password" name="password" placeholder="password"></br>-->
+            <!--<button type="submit">Login</button>-->
+        <!--</form>-->
+
+
+     <div class="container">
+
+      <form class="form-signin" action="/greenr/ui/login" method="post" id="login">
+        <h2 class="form-signin-heading">Please log in</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+        <!--<h3>Register</h3>-->
+        <!--<form action="/register" method="post" id="register">-->
+            <!--<input type="text" name="username" placeholder="username"><br>-->
+            <!--<input type="password" name="password" placeholder="password"></br>-->
+            <!--<input type="email" name="email" placeholder="email@example.com"></br>-->
+            <!--<button type="submit">Register</button>-->
+        <!--</form>-->
+        <!--</body>-->
+<!--</html>-->
+{{ template "footer.html" .}}

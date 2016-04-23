@@ -1,0 +1,88 @@
+
+{{ template "header.html" .}}
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <!--<h3>Ask me a question</h3>-->
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Where do you want to go today ?
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">What is the quickest way to get to work?</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">What is the greenest way to work?</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">How many trees have I saved so far?</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:loadData()">How many playgrounds are within a 20 minute walk?</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">What is the quickes way to get to a playground?</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">How many toilets will be within a 20 minutes bike ride</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Is "date" OR "today" a school day?</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+            </ul>
+          </div>
+        <br>
+          <div id="question_response" class="" role="alert"></div>
+      </div>
+    </div> <!-- /container -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-1 col-mg-offset-1 col-lg-offset-1 col-sm-9 col-mg-9 col-lg-9">
+      <div id="result">
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-mg-offset-1 col-lg-offset-1 col-sm-9 col-mg-9 col-lg-9 map">
+      <div class="google-map-canvas" id="map-canvas">
+      </div>
+    </div>
+  </div>
+</div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map
+      var pos
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: {lat: 58.9556991, lng: 5.691483300000001},
+          zoom: 14
+        });
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('You are here.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQdskmQYLwH0eofoNpS6OiqDEZijZnNgA&callback=initMap">
+    </script>
+   <script src="/greenr/static/js/start.js"></script>
+
+{{ template "footer.html" .}}
